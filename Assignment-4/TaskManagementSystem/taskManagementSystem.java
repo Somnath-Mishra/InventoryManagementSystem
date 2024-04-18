@@ -82,11 +82,13 @@ class TasksManagementSystem {
   }
 
   private static void showAllTask(List<Task> tasks) {
-    Collections.sort(tasks, new SortById());
+    System.out.printf("%-10s %-20s %-10s%n", "Task Id", "Task Name", "Status");
     for (Task task : tasks) {
-      System.out.println(task);
+        System.out.printf("%-10d %-20s %-10s%n", task.get_id(), task.getTaskName(), 
+                          task.getIsComplete() ? "completed" : "pending");
     }
-  }
+}
+
 
   static class SortById implements Comparator<Task> {
     public int compare(Task t1, Task t2) {
