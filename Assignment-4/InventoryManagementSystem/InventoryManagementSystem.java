@@ -1,6 +1,8 @@
 
 import java.io.*;
 import java.util.*;
+import java.text.SimpleDateFormat;
+
 
 public class InventoryManagementSystem {
   private static final String FILE_NAME = "products.csv";
@@ -52,11 +54,13 @@ public class InventoryManagementSystem {
   }
 
   private static void viewProducts(List<Product> products) {
-    System.out.println("Product List:");
-    for (Product product : products) {
-      System.out.println(product);
+        System.out.println("Product List:");
+        System.out.printf("%-20s %-10s%n", "Product", "Price");
+        for (Product product : products) {
+                System.out.printf("%-20s $%.2f%n", product.getName(), product.getPrice());
+        }
     }
-  }
+
 
   private static void addProduct(Scanner scanner, List<Product> products) {
     System.out.print("Enter product name: ");
@@ -107,12 +111,16 @@ public class InventoryManagementSystem {
     System.out.println("Product not found.");
   }
 
+  private static final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
   private static void viewPurchaseHistory(List<Purchase> purchaseHistory) {
     System.out.println("Purchase History:");
+    System.out.printf("%-15s %-10s %-15s %-30s%n", "Product", "Quantity", "Total Price", "Purchase Date");
     for (Purchase purchase : purchaseHistory) {
-      System.out.println(purchase);
+        System.out.printf("%-15s %-10d $%.1f %30s%n", purchase.getProductName(), purchase.getQuantity(),
+                          purchase.getTotalPrice(), dateFormat.format(purchase.getPurchaseDate()));
     }
-  }
+}
+
 
   private static List<Product> loadProductsFromFile() {
     List<Product> products = new ArrayList<>();
