@@ -64,21 +64,25 @@ class MarksManagementSystem {
     System.out.println("Enter Student Roll No:");
     int rollNo = scanner.nextInt();
     System.out.println("Printing Marks of Student of Roll No " + rollNo + ": ");
+    System.out.printf("%-10s %-20s %-25s %-10s %-10s%n", "Roll No", "Name", "Software Engineering", "Sanskrit", "EVS");
     for (Mark mark : marks) {
-      if (mark.getRollNo() == rollNo) {
-        System.out.println(mark);
-        break;
-      }
+        if (mark.getRollNo() == rollNo) {
+            System.out.printf("%-10d %-20s %-25.1f %-10.1f %-10.1f%n", mark.getRollNo(), mark.getName(), 
+                              mark.getsweMark(), mark.getsnkMark(), mark.getevsMark());
+            break;
+        }
     }
-  }
+}
+
 
   private static void publishResult(List<Mark> marks) {
-    Collections.sort(marks, new SortByTotalMark());
-    System.out.println("Publishing Result");
+    System.out.printf("%-10s %-20s %-25s %-10s %-10s%n", "Roll No", "Name", "Software Engineering", "Sanskrit", "EVS");
     for (Mark mark : marks) {
-      System.out.println(mark);
+        System.out.printf("%-10d %-20s %-25.1f %-10.1f %-10.1f%n", mark.getRollNo(), mark.getName(), 
+                          mark.getsweMark(), mark.getsnkMark(), mark.getevsMark());
     }
-  }
+}
+
 
   private static void updateMark(Scanner scanner, List<Mark> marks) {
     System.out.println("Enter Student Roll No:");
